@@ -1,0 +1,37 @@
+hexstamp 0xREV-A01
+
+SECTION,ROLES
+  ROW,role,base,enum,HOST,Host,string,nonnull,Primary host role
+  ROW,role,base,enum,ORGANICCPUOWNER,OrganicCPUOwner,string,nonnull,Owner of OrganicCPU
+  ROW,role,base,enum,REGULATOR,Regulator,string,nonnull,Regulatory or ethics authority
+  ROW,role,base,enum,SOVEREIGNKERNEL,SovereignKernel,string,nonnull,Internal kernel role
+
+  ; Symbolic alias, but expands to a concrete, multi‑party predicate.
+  ROW,role,alias,enum,NEUROMORPH-GOD,NeuromorphSovereign,string,nonnull,Host+OrganicCPUOwner+Regulator quorum+SovereignKernel
+
+SECTION,ROLE-COMPOSITION
+  ; Composite satisfaction condition in the consent/role lattice.
+  ROW,rc,neuromorph,condition,neuromorphgodsatisfied,
+      hasroleHost AND hasroleOrganicCPUOwner
+      AND hasquorumRegulator>=2
+      AND hassystemroleSovereignKernel,
+      string,readonly,Composite role predicate for sovereign neuromorph decisions
+
+SECTION,REVERSAL-POLICY
+  ; Global, shard‑level flag: reversal forbidden by default (solid rights, monotone evolution).
+  ROW,rev,capability,flag,allowneuromorphreversal,false,bool,nonwaivable,No neuromorph evolution reversal by default
+
+  ; Per‑transition, owner / quorum signed order, anchored in consent‑ledger.
+  ROW,rev,capability,flag,explicitreversalorder,,bool,input,Owner-signed reversal order in consent-ledger microspace
+
+  ; Derived from Tier2 envelope and RoH analysis: all softer paths exhausted.
+  ROW,rev,capability,flag,nosaferalternative,,bool,derived,All non-reversal mitigations exhausted (tighten, pause, rest)
+
+  ; Frozen last‑resort condition: only when all three conditions are true.
+  ROW,rev,capability,condition,canrevertcapability,
+      neuromorphgodsatisfied
+      AND explicitreversalorder true
+      AND nosaferalternative true,
+      string,readonly,Last-resort evolution reversal condition
+
+FOOTER,END-OF-SHARD
