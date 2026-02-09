@@ -1,0 +1,25 @@
+SECTION,ROLES
+ROW,role,base,enum,HOST,Host,string,nonnull,Primary host role
+ROW,role,base,enum,ORGANICCPU_OWNER,OrganicCPUOwner,string,nonnull,Owner of OrganicCPU
+ROW,role,base,enum,REGULATOR,Regulator,string,nonnull,Regulatory or ethics authority
+ROW,role,base,enum,SOVEREIGN_KERNEL,SovereignKernel,string,nonnull,Internal kernel role
+
+ROW,role,alias,enum,NEUROMORPH-GOD,NeuromorphSovereign,string,nonnull,
+ Host + OrganicCPUOwner + Regulator quorum + SovereignKernel
+
+SECTION,ROLE-COMPOSITION
+ROW,rc,neuromorph,condition,neuromorphgod_satisfied,
+ hasroleHost AND hasroleOrganicCPUOwner
+ AND hasquorumRegulator >= 2
+ AND hassystemroleSovereignKernel,
+ string,readonly,Composite role predicate
+
+SECTION,REVERSAL-POLICY
+ROW,rev,capability,flag,allowneuromorphreversal,false,bool,nonwaivable,No evolution reversal by default
+ROW,rev,capability,flag,explicitreversalorder,,bool,input,Owner-signed reversal order
+ROW,rev,capability,flag,nosaferalternative,,bool,derived,All soft mitigations exhausted
+ROW,rev,capability,condition,canrevertcapability,
+ neuromorphgod_satisfied AND explicitreversalorder true AND nosaferalternative true,
+ string,readonly,Reversal last-resort condition
+
+FOOTER,END-OF-SHARD
