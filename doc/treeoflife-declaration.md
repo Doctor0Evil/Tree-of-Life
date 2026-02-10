@@ -78,6 +78,9 @@ Under this declaration, Tree‑of‑Life may be used for:
 - **Simulation and Research**  
   - Serving as the mid‑level state in simulation sandboxes that generate synthetic TreeOfLifeView trajectories under BiophysicalEnvelopeSpec and RoH 0.30, with outputs written to JSONL for analysis only. [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/collection_6557a17d-eabd-4cdc-aa7b-3dbedb30e0c5/0d964317-c2c3-400a-81f6-f923ea23fc71/if-necessary-sanitize-the-code-7jDmbRJlT3SnSttCB78ZQg.md)
 
+## neuroprint!
+neuroprint! is a pure, non‑actuating projection layer. It MAY read CapabilityState, ConsentState, BiophysicalEnvelopeSnapshot, RoHProjection, and neurorights policy views, and MAY emit NeuroPrintView structures and advisory labels, but it MUST NOT mutate, propose changes to, or open any write‑path into CapabilityState, ConsentState, BiophysicalEnvelopeSpec, RoH models, ReversalConditions, PolicyStack, or any hardware driver. All neuroprint! outputs are logs or views only, serialized into .evolve.jsonl / .donutloop.aln and HUD surfaces.
+
 ## Forbidden Uses
 
 Tree‑of‑Life outputs MUST NOT be used to:
