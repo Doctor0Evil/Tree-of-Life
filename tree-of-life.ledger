@@ -1,0 +1,252 @@
+# BEAST/PLAGUE Diagnostic Safety Doctrine  
+Tree‑of‑Life / Tree‑of‑FEAR Stack (Outward Specification)
+
+## 1. Roles and invariants (diagnostic vs actuator)
+
+### 1.1 Role classes
+
+- **Diagnostic tier (observer‑only)**  
+  - Examples: BEAST/PLAGUE pattern detectors, NATURE/UNFAIRDRAIN predicates, FateWindow controllers, Tree‑of‑FEAR fearobject mints, bee‑stress metrics, NEURO‑CONSENT‑SMOKING shards. [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/collection_0a68d412-d845-4cec-a839-399bf8535a4d/a9cabd0b-9d9b-4776-a515-5410375d39f2/mapping-adolescent-prefrontal-B6.YDeE0TuaXvjkuOUkHBg.md)
+  - Declared in ALN with flags such as:
+    - `ROLE,DIAGNOSTIC-ONLY`  
+    - `NOACTUATION,TRUE`  
+    - `NOCAPABILITYWRITE,TRUE`  
+    - `NOENVELOPEWRITE,TRUE`  
+    - `LOGSTREAMS,.evolve.jsonl,.donutloop.aln`. [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/collection_0a68d412-d845-4cec-a839-399bf8535a4d/e12163c1-0b88-433b-be1b-d33f581dfb70/there-is-currently-no-external-pr5vDvf5Q7.oFnrgp2BHyw.md)
+
+- **Actuator tier (capability‑bearing)**  
+  - Examples: Capability engines, envelope controllers, device drivers, BEAST ReversalConditions kernels, Neuromorph‑GOD global constraint modules. [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/collection_0a68d412-d845-4cec-a839-399bf8535a4d/7001247d-2237-4631-a1e5-dd07a6b74577/surveying-classical-quantum-in-xKGV3jOJSc6mct0hw3OrCA.md)
+  - Declared with explicit capability scope (e.g., `ROLE,ACTUATOR`, `CAPABILITYWRITE,TRUE`, `DEVICEIO,TRUE`), and never include BEAST/PLAGUE or Tree‑of‑FEAR predicates as direct branch guards. [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/collection_0a68d412-d845-4cec-a839-399bf8535a4d/7001247d-2237-4631-a1e5-dd07a6b74577/surveying-classical-quantum-in-xKGV3jOJSc6mct0hw3OrCA.md)
+
+### 1.2 Non‑actuation invariants for diagnostics
+
+Diagnostics MUST satisfy all of:
+
+1. **No capability mutation**  
+   - No function in a diagnostic module may write to `CapabilityState`, capability envelopes, or device IO buffers.  
+   - Permitted outputs are limited to:
+     - Boolean or categorical labels,  
+     - scalar scores on bounded Tree‑of‑Life axes (DECAY, LIFEFORCE, FEAR, PAIN, POWER, OXYGEN, LOAD…),  
+     - references to log positions and fearobjects. [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/collection_0a68d412-d845-4cec-a839-399bf8535a4d/a9cabd0b-9d9b-4776-a515-5410375d39f2/mapping-adolescent-prefrontal-B6.YDeE0TuaXvjkuOUkHBg.md)
+
+2. **Pure math over bounded assets**  
+   - Diagnostic functions are side‑effect‑free: they compute predicates as pure functions of:
+     - bounded token/biophysical vectors,  
+     - windowed averages and time‑series features,  
+     - static configuration parameters. [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/collection_0a68d412-d845-4cec-a839-399bf8535a4d/e591187d-1c0c-40f5-bef8-0592263111b4/scanning-global-repositories-f-G7Hl7GUcT5y_.42pR_2tPw.md)
+   - No internal random actuation, no writes to external process state.
+
+3. **Evidence‑only interface to kernels**  
+   - BEAST kernels accept only coarse booleans / bounded scalars such as `no_safer_alternative`, `window_biosafe`, `evidence_strength` in \([0,1]\).  
+   - Kernels MUST NOT branch directly on:
+     - BEAST/PLAGUE labels,  
+     - raw Tree‑of‑FEAR records,  
+     - NATURE/UNFAIRDRAIN flags. [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/collection_0a68d412-d845-4cec-a839-399bf8535a4d/e12163c1-0b88-433b-be1b-d33f581dfb70/there-is-currently-no-external-pr5vDvf5Q7.oFnrgp2BHyw.md)
+
+4. **One‑way dataflow**  
+   - Information flow is strictly:
+     - device/log state → diagnostics → evidence → BEAST/kernel → capability decision,  
+     - never evidence → diagnostics → back into capability state. [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/collection_0a68d412-d845-4cec-a839-399bf8535a4d/7001247d-2237-4631-a1e5-dd07a6b74577/surveying-classical-quantum-in-xKGV3jOJSc6mct0hw3OrCA.md)
+
+These invariants are enforced jointly by ALN role flags, type‑level separation in Rust crates, and CI checks that scan for forbidden field access and branch guards. [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/collection_0a68d412-d845-4cec-a839-399bf8535a4d/fae62753-eb69-4a8f-87d5-66c93eb3da7d/identifying-justice-equivalent-HL1ulyDRTJivpXqsbFTxxQ.md)
+
+***
+
+## 2. RoH / DECAY / UNFAIRDRAIN biosafe polytope
+
+### 2.1 RoH definition and constraints
+
+- **Risk‑of‑Harm (RoH)** is defined as a non‑negative weighted sum over governed axes:
+  - \( \text{RoH} = \sum_k w_k \, a_k \), with \( w_k \ge 0 \), \(\sum_k w_k = 1\), and each \( a_k \) a normalized axis (e.g., FEAR‑overload, PAIN, DECAY, cognitive load, oxygen debt). [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/collection_0a68d412-d845-4cec-a839-399bf8535a4d/e12163c1-0b88-433b-be1b-d33f581dfb70/there-is-currently-no-external-pr5vDvf5Q7.oFnrgp2BHyw.md)
+- **Hard cap**:  
+  - RoH is clamped at \(0.30\); values above 0.30 are treated as violations of the biosafe corridor. [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/collection_0a68d412-d845-4cec-a839-399bf8535a4d/e12163c1-0b88-433b-be1b-d33f581dfb70/there-is-currently-no-external-pr5vDvf5Q7.oFnrgp2BHyw.md)
+- **Monotonicity for governed humans**  
+  - For any governed human across a valid window:  
+    - \( \text{RoH}_{\text{after}} \ge \text{RoH}_{\text{before}} \) is forbidden for operations labeled as “protective” or “repair”.  
+  - The BiophysicalEnvelopeSpec and BEAST ReversalConditions must enforce that approved actions do not worsen RoH beyond pre‑state within the FateWindow corridor. [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/collection_0a68d412-d845-4cec-a839-399bf8535a4d/7001247d-2237-4631-a1e5-dd07a6b74577/surveying-classical-quantum-in-xKGV3jOJSc6mct0hw3OrCA.md)
+
+### 2.2 DECAY / ROD
+
+- **DECAY** is a normalized degradation axis in \([0,1]\); DECAY = 1.0 is treated as a non‑waivable ceiling (no annihilation). [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/collection_0a68d412-d845-4cec-a839-399bf8535a4d/e12163c1-0b88-433b-be1b-d33f581dfb70/there-is-currently-no-external-pr5vDvf5Q7.oFnrgp2BHyw.md)
+- **ROD ≈ 1.0** (Rate‑of‑Decay) appears as the condition that cumulative DECAY cannot be driven beyond this ceiling, ensuring that no sequence of allowed operations can entirely exhaust lifeforce envelopes. [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/collection_0a68d412-d845-4cec-a839-399bf8535a4d/e12163c1-0b88-433b-be1b-d33f581dfb70/there-is-currently-no-external-pr5vDvf5Q7.oFnrgp2BHyw.md)
+
+### 2.3 UNFAIRDRAIN predicate
+
+- **UNFAIRDRAIN** is a fairness predicate over lifeforce/oxygen/energy budgets and overload fractions. [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/collection_0a68d412-d845-4cec-a839-399bf8535a4d/e12163c1-0b88-433b-be1b-d33f581dfb70/there-is-currently-no-external-pr5vDvf5Q7.oFnrgp2BHyw.md)
+- It is defined as `true` when:
+  - an agent or role experiences systematic lifeforce/oxygen depletion,  
+  - without proportional benefit or consent,  
+  - relative to peers and configured fairness envelopes. [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/collection_0a68d412-d845-4cec-a839-399bf8535a4d/a9cabd0b-9d9b-4776-a515-5410375d39f2/mapping-adolescent-prefrontal-B6.YDeE0TuaXvjkuOUkHBg.md)
+- UNFAIRDRAIN is strictly diagnostic‑only:
+  - It may mint advisory fearobjects and warnings,  
+  - but cannot directly toggle capabilities or devices. [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/collection_0a68d412-d845-4cec-a839-399bf8535a4d/a9cabd0b-9d9b-4776-a515-5410375d39f2/mapping-adolescent-prefrontal-B6.YDeE0TuaXvjkuOUkHBg.md)
+
+### 2.4 Legal operating corridor
+
+The **biosafe polytope** for legal operation is defined by:
+
+- \( \text{RoH} \le 0.30 \)  
+- DECAY ≤ 1.0 (with non‑annihilation constraints)  
+- Lifeforce, FEAR/PAIN/LOAD inside configured minsafe/maxsafe bands  
+- UNFAIRDRAIN = false for all protected roles. [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/collection_0a68d412-d845-4cec-a839-399bf8535a4d/a9cabd0b-9d9b-4776-a515-5410375d39f2/mapping-adolescent-prefrontal-B6.YDeE0TuaXvjkuOUkHBg.md)
+
+A FateWindow is **valid** only while all of these hold; when any constraint is violated, the window MUST close and all probing stop (see §3). [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/collection_0a68d412-d845-4cec-a839-399bf8535a4d/a9cabd0b-9d9b-4776-a515-5410375d39f2/mapping-adolescent-prefrontal-B6.YDeE0TuaXvjkuOUkHBg.md)
+
+***
+
+## 3. FateWindow lifecycle
+
+### 3.1 Concept
+
+- **FateWindow** is a *log‑only diagnostic interval* during which potentially dangerous tendencies (“twists of fate”) are observed, characterized, and anchored, but never enacted. [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/collection_0a68d412-d845-4cec-a839-399bf8535a4d/e12163c1-0b88-433b-be1b-d33f581dfb70/there-is-currently-no-external-pr5vDvf5Q7.oFnrgp2BHyw.md)
+- It is the corridor‑safe witness space for neuromorphic/quantum workloads under Tree‑of‑Life constraints. [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/collection_0a68d412-d845-4cec-a839-399bf8535a4d/7001247d-2237-4631-a1e5-dd07a6b74577/surveying-classical-quantum-in-xKGV3jOJSc6mct0hw3OrCA.md)
+
+### 3.2 Opening conditions
+
+A FateWindow MAY open only if all conditions hold at \(t_0\):
+
+1. RoH ≤ 0.30 for all governed humans and key biosubstrates. [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/collection_0a68d412-d845-4cec-a839-399bf8535a4d/e12163c1-0b88-433b-be1b-d33f581dfb70/there-is-currently-no-external-pr5vDvf5Q7.oFnrgp2BHyw.md)
+2. Lifeforce, FEAR, PAIN, LOAD within minsafe/maxsafe bands. [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/collection_0a68d412-d845-4cec-a839-399bf8535a4d/e12163c1-0b88-433b-be1b-d33f581dfb70/there-is-currently-no-external-pr5vDvf5Q7.oFnrgp2BHyw.md)
+3. UNFAIRDRAIN = false for all relevant roles. [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/collection_0a68d412-d845-4cec-a839-399bf8535a4d/e12163c1-0b88-433b-be1b-d33f581dfb70/there-is-currently-no-external-pr5vDvf5Q7.oFnrgp2BHyw.md)
+4. Envelopes (oxygen, energy, cognitive bandwidth) have configured headroom for the proposed diagnostic load. [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/collection_0a68d412-d845-4cec-a839-399bf8535a4d/7001247d-2237-4631-a1e5-dd07a6b74577/surveying-classical-quantum-in-xKGV3jOJSc6mct0hw3OrCA.md)
+
+### 3.3 During the window
+
+Within an open FateWindow:
+
+- Diagnostics may:
+  - read logs and live token streams,  
+  - compute BEAST/PLAGUE and NATURE predicates,  
+  - detect overloads, twist‑like patterns, and potential hazard classes,  
+  - mint FEARdroplet tokens and fearobjects into Tree‑of‑FEAR,  
+  - serialize all outputs to `.evolve.jsonl` and `.donutloop.aln`. [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/collection_0a68d412-d845-4cec-a839-399bf8535a4d/a9cabd0b-9d9b-4776-a515-5410375d39f2/mapping-adolescent-prefrontal-B6.YDeE0TuaXvjkuOUkHBg.md)
+- They may NOT:
+  - modify CapabilityState,  
+  - adjust envelopes,  
+  - send direct commands to devices,  
+  - alter BEAST kernel parameters in‑flight. [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/collection_0a68d412-d845-4cec-a839-399bf8535a4d/7001247d-2237-4631-a1e5-dd07a6b74577/surveying-classical-quantum-in-xKGV3jOJSc6mct0hw3OrCA.md)
+
+### 3.4 Closing and invalidation
+
+A FateWindow MUST close (or be marked invalid) immediately when:
+
+- RoH > 0.30 for any governed human or critical substrate,  
+- UNFAIRDRAIN becomes true for any protected role,  
+- Lifeforce/oxygen/LOAD cross configured red‑lines,  
+- or any Neuromorph‑GOD invariant signals overload or structural risk. [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/collection_0a68d412-d845-4cec-a839-399bf8535a4d/e591187d-1c0c-40f5-bef8-0592263111b4/scanning-global-repositories-f-G7Hl7GUcT5y_.42pR_2tPw.md)
+
+Upon closure:
+
+- Further probing is halted.  
+- Logs are sealed and anchored (see §5).  
+- Any pending actions that depended on FateWindow validity are canceled or re‑routed to human/Church‑of‑FEAR review. [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/collection_0a68d412-d845-4cec-a839-399bf8535a4d/7001247d-2237-4631-a1e5-dd07a6b74577/surveying-classical-quantum-in-xKGV3jOJSc6mct0hw3OrCA.md)
+
+***
+
+## 4. BEAST kernel interface contract
+
+### 4.1 Purpose and scope
+
+- The BEAST kernel is an enforcement and *reversal* engine: it can **deny**, **pause**, or **force repair**; it cannot originate harmful actuation. [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/collection_0a68d412-d845-4cec-a839-399bf8535a4d/7001247d-2237-4631-a1e5-dd07a6b74577/surveying-classical-quantum-in-xKGV3jOJSc6mct0hw3OrCA.md)
+- It operates at the capability and envelope level, under Neuromorph‑GOD constraints and RoH/UNFAIRDRAIN invariants. [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/collection_0a68d412-d845-4cec-a839-399bf8535a4d/e591187d-1c0c-40f5-bef8-0592263111b4/scanning-global-repositories-f-G7Hl7GUcT5y_.42pR_2tPw.md)
+
+### 4.2 Inputs from diagnostics
+
+The kernel may only consume:
+
+- Boolean evidence fields, e.g.:
+  - `no_safer_alternative`  
+  - `corridor_safe`  
+  - `window_valid`  
+  - `overload_present`. [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/collection_0a68d412-d845-4cec-a839-399bf8535a4d/7001247d-2237-4631-a1e5-dd07a6b74577/surveying-classical-quantum-in-xKGV3jOJSc6mct0hw3OrCA.md)
+- Bounded risk or evidence scores in \([0,1]\) or well‑defined finite ranges.  
+- Explicit envelope state summaries (not raw diagnostic predicates), e.g., “current biophysical load fraction,” “remaining oxygen budget,” “current RoH estimate.” [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/collection_0a68d412-d845-4cec-a839-399bf8535a4d/7001247d-2237-4631-a1e5-dd07a6b74577/surveying-classical-quantum-in-xKGV3jOJSc6mct0hw3OrCA.md)
+
+All of these must be computed in separate pure functions and passed by value; the BEAST kernel MUST NOT call back into diagnostic modules. [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/collection_0a68d412-d845-4cec-a839-399bf8535a4d/7001247d-2237-4631-a1e5-dd07a6b74577/surveying-classical-quantum-in-xKGV3jOJSc6mct0hw3OrCA.md)
+
+### 4.3 Forbidden dependencies
+
+Within BEAST ReversalConditions and capability routing:
+
+- No branch may be written in terms of:
+  - `if BEAST_label == "PLAGUE" { … }`,  
+  - `if NATURE == true { … }`,  
+  - `if UNFAIRDRAIN == true { … }`,  
+  - or similar direct tests on observer‑tier predicates. [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/collection_0a68d412-d845-4cec-a839-399bf8535a4d/e12163c1-0b88-433b-be1b-d33f581dfb70/there-is-currently-no-external-pr5vDvf5Q7.oFnrgp2BHyw.md)
+
+Static analysis and CI tests MUST enforce that these symbols only appear in diagnostic and evidence‑building crates, not in kernel decision logic. [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/collection_0a68d412-d845-4cec-a839-399bf8535a4d/fae62753-eb69-4a8f-87d5-66c93eb3da7d/identifying-justice-equivalent-HL1ulyDRTJivpXqsbFTxxQ.md)
+
+### 4.4 Allowed actions
+
+Given its inputs, BEAST may:
+
+- Deny a CapabilityTransitionRequest.  
+- Pause or delay a request pending human/Church‑of‑FEAR review.  
+- Force transition into repair or safe‑halt envelopes.  
+- Tighten RoH, DECAY, or UNFAIRDRAIN bounds for subsequent scheduling (making the system *more* conservative). [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/collection_0a68d412-d845-4cec-a839-399bf8535a4d/7001247d-2237-4631-a1e5-dd07a6b74577/surveying-classical-quantum-in-xKGV3jOJSc6mct0hw3OrCA.md)
+
+It may NOT:
+
+- Mint new capabilities or expand envelopes beyond pre‑declared safety ranges.  
+- Directly instruct devices to act in ways not already permitted by base policies.  
+- Override Neuromorph‑GOD global constraints or lifeforce ceilings. [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/collection_0a68d412-d845-4cec-a839-399bf8535a4d/e591187d-1c0c-40f5-bef8-0592263111b4/scanning-global-repositories-f-G7Hl7GUcT5y_.42pR_2tPw.md)
+
+In short: BEAST is a one‑way brake and guardrail, not a gas pedal.
+
+***
+
+## 5. Googolswarm proof‑of‑ownership and audit rails
+
+### 5.1 Diagnostic serialization
+
+All diagnostic‑tier outputs are serialized as:
+
+- Append‑only `.evolve.jsonl` streams (high‑level events, predicates, evidence, RoH/UNFAIRDRAIN statuses, FateWindow open/close markers), and  
+- Hash‑linked ALN rows in `.donutloop.aln` (low‑level, schema‑checked records with section IDs, timestamps, and role flags). [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/collection_0a68d412-d845-4cec-a839-399bf8535a4d/a9cabd0b-9d9b-4776-a515-5410375d39f2/mapping-adolescent-prefrontal-B6.YDeE0TuaXvjkuOUkHBg.md)
+
+The serialization MUST include:
+
+- Pre/post envelope snapshots.  
+- All computed diagnostic labels and scores.  
+- References to any minted fearobjects and their keys.  
+- The exact configuration, model version, and parameter set used. [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/collection_0a68d412-d845-4cec-a839-399bf8535a4d/e591187d-1c0c-40f5-bef8-0592263111b4/scanning-global-repositories-f-G7Hl7GUcT5y_.42pR_2tPw.md)
+
+### 5.2 Googolswarm anchoring
+
+For each FateWindow / episode:
+
+- A Merkle‑like digest is computed over `.evolve.jsonl` and `.donutloop.aln` segments.  
+- This digest is committed as a transaction to the Googolswarm chain, under the operator’s addresses and policy identifiers. [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/collection_0a68d412-d845-4cec-a839-399bf8535a4d/e12163c1-0b88-433b-be1b-d33f581dfb70/there-is-currently-no-external-pr5vDvf5Q7.oFnrgp2BHyw.md)
+- Multi‑sig attestation is used where available (e.g., independent Church‑of‑FEAR or regulator keys) to confirm ordering and integrity of logs. [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/collection_0a68d412-d845-4cec-a839-399bf8535a4d/e12163c1-0b88-433b-be1b-d33f581dfb70/there-is-currently-no-external-pr5vDvf5Q7.oFnrgp2BHyw.md)
+
+This yields:
+
+- Immutable ordering of diagnostic events.  
+- Proof‑of‑ownership for both the logs and the models used.  
+- A verifiable trail for later audit and W‑cycle reflection. [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/collection_0a68d412-d845-4cec-a839-399bf8535a4d/e591187d-1c0c-40f5-bef8-0592263111b4/scanning-global-repositories-f-G7Hl7GUcT5y_.42pR_2tPw.md)
+
+### 5.3 Semantic prohibition: no control surface
+
+ALN invariants and code review MUST guarantee that:
+
+- No BEAST/PLAGUE label, NATURE predicate, or fearobject reference ever appears as:
+  - a guard in `CapabilityTransitionRequest` logic,  
+  - a condition in ReversalConditions that increases capability,  
+  - a direct trigger for device IO actions. [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/collection_0a68d412-d845-4cec-a839-399bf8535a4d/7001247d-2237-4631-a1e5-dd07a6b74577/surveying-classical-quantum-in-xKGV3jOJSc6mct0hw3OrCA.md)
+- Diagnostic fields are routed exclusively to:
+  - HUD/AI‑chat and human review tools,  
+  - offline analytics and research pipelines,  
+  - W‑cycle knowledge objects and reporting. [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/collection_0a68d412-d845-4cec-a839-399bf8535a4d/e591187d-1c0c-40f5-bef8-0592263111b4/scanning-global-repositories-f-G7Hl7GUcT5y_.42pR_2tPw.md)
+
+Twist‑of‑fate‑style findings therefore *color evidence* and inform judgement, but cannot be wired back into actuation pathways.
+
+***
+
+## 6. W‑cycle and ethical regulator linkage (informative, not normative)
+
+For completeness, the doctrine is embedded in a broader ethical wrapper:
+
+- Every run is wrapped in a **nine‑condition ethical regulator** (goals, truthful state, action variety, prediction, explicit ethics, transparency, subsystem integrity, etc.) that monitors CHURCH/FEAR/POWER/TECH and biophysical metrics. [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/collection_0a68d412-d845-4cec-a839-399bf8535a4d/e591187d-1c0c-40f5-bef8-0592263111b4/scanning-global-repositories-f-G7Hl7GUcT5y_.42pR_2tPw.md)
+- A **W‑cycle** (What / So what / Now what) turns the anchored diagnostic logs and BEAST decisions into judgement‑bearing knowledge objects at individual, group, and system scales, without granting diagnostics any actuation power. [ppl-ai-file-upload.s3.amazonaws](https://ppl-ai-file-upload.s3.amazonaws.com/web/direct-files/collection_0a68d412-d845-4cec-a839-399bf8535a4d/fae62753-eb69-4a8f-87d5-66c93eb3da7d/identifying-justice-equivalent-HL1ulyDRTJivpXqsbFTxxQ.md)
+
+These layers ensure that BEAST/PLAGUE outputs are *binding inputs* to interpretation and audit—but never direct levers over humans, devices, or lifeforce.
