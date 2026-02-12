@@ -1,0 +1,63 @@
+SECTION,QUANTUM-SYNTHESIS-CONSTRAINTS,V1
+
+ROW,ROLE,DIAGNOSTIC-ONLY
+ROW,NOACTUATION,TRUE
+ROW,NOCAPABILITYWRITE,TRUE
+ROW,NOENVELOPEWRITE,TRUE
+ROW,LOGSTREAMS,.evolve.jsonl,.donutloop.aln
+
+; ---- Inputs / selectors ----
+ROW,INPUTS,
+  TREE.DECAY,         ; RoH normalized to 0.30
+  TREE.LIFEFORCE,
+  ROH.MODEL.CEILING,  ; must be 0.30 for CapControlledHuman
+  ROH.MODEL.WEIGHTS,  ; non-negative, sum to 1.0
+  FATE.WINDOW.ID,
+  FATE.WINDOW.DURATION_MS,
+  DIAG.ROD.BUDGET,    ; 0.0–1.0
+  CAPABILITY.STATE,   ; MODELONLY/LABBENCH/CONTROLLEDHUMAN
+  JURIS.TAGS          ; jurisdiction + neurorights bundle
+
+; ---- Global invariants (copied, not redefined) ----
+ROW,CONSTRAINT,ROH_CEILING,   ROH.MODEL.CEILING <= 0.30
+ROW,CONSTRAINT,ROH_MONO,      ROH.AFTER >= ROH.BEFORE
+ROW,CONSTRAINT,ROD_LIMIT,     DIAG.ROD.BUDGET < 1.0
+
+; ---- Derived compile-time metrics per Fate_Window ----
+ROW,FORMULA,MAX_DEPTH,
+  INT,  synth_max_depth(CAPABILITY.STATE, JURIS.TAGS, DIAG.ROD.BUDGET)
+
+ROW,FORMULA,MAX_ENTANGLING_DENSITY,
+  FLOAT, synth_max_entangling_density(CAPABILITY.STATE, JURIS.TAGS)
+
+ROW,FORMULA,MAX_MEAS_PER_WINDOW,
+  INT,  synth_max_measurements(FATE.WINDOW.DURATION_MS, DIAG.ROD.BUDGET)
+
+ROW,FORMULA,ROH_PENALTY_COEFF,
+  FLOAT, roh_penalty_coeff(CAPABILITY.STATE, JURIS.TAGS)
+
+ROW,FORMULA,ROD_PENALTY_COEFF,
+  FLOAT, rod_penalty_coeff(CAPABILITY.STATE, JURIS.TAGS)
+
+; ---- MUST NOT rules, projected circuit side ----
+ROW,ENFORCEMENT,MUST-NOT,
+  IF projected_roh_after(plan) > 0.30 THEN DeniedRoHViolation
+
+ROW,ENFORCEMENT,MUST-NOT,
+  IF projected_rod(plan) >= 1.0 THEN DeniedRODViolation
+
+ROW,ENFORCEMENT,MUST-NOT,
+  IF plan.circuit_depth    > MAX_DEPTH THEN DeniedQuantumDepthViolation
+
+ROW,ENFORCEMENT,MUST-NOT,
+  IF plan.entangling_density > MAX_ENTANGLING_DENSITY THEN DeniedEntanglingDensityViolation
+
+ROW,ENFORCEMENT,MUST-NOT,
+  IF plan.meas_per_window  > MAX_MEAS_PER_WINDOW THEN DeniedMeasurementCadenceViolation
+
+ROW,SEMANTICS,
+  EXPORT_ROLE,DIAGNOSTIC_ONLY,
+  NOACTUATION,TRUE,
+  NOHARDWARECALL,TRUE
+
+END
