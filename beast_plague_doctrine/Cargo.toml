@@ -1,0 +1,12 @@
+[package]
+name = "beast_plague_doctrine"
+version = "0.1.0"
+edition = "2021"
+license = "Apache-2.0"
+description = "Type-checked BEAST/PLAGUE diagnostic safety doctrine for Tree-of-Life / Tree-of-FEAR."
+repository = "https://tree-of-life.ledger/inner/beast_plague_doctrine"
+readme = "README.md"
+
+[dependencies]
+serde = { version = "1.0", features = ["derive"] }
+thiserror = "1.0"
