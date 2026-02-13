@@ -1,0 +1,550 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Astrophysiological Survivability & Neuromorphic Evolution</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <!-- Plotly.js -->
+    <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;500;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* Custom Palette Configuration */
+        :root {
+            --bg-void: #020617;
+            --card-bg: #0f172a;
+            --accent-cyan: #06b6d4;
+            --accent-magenta: #d946ef;
+            --accent-lime: #84cc16;
+            --accent-orange: #f97316;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+        }
+
+        body {
+            background-color: var(--bg-void);
+            color: var(--text-main);
+            font-family: 'Rajdhani', sans-serif;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        /* Chart Container Styling - STRICT ADHERENCE TO REQUIREMENTS */
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px; /* Constraint to prevent wide charts */
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px; /* Base height */
+            max-height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        /* Responsive adjustments */
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+
+        /* Diagram Styling (No SVG) */
+        .diagram-node {
+            background: linear-gradient(145deg, #1e293b, #0f172a);
+            border: 1px solid var(--accent-cyan);
+            box-shadow: 0 0 15px rgba(6, 182, 212, 0.2);
+        }
+        
+        .connector-line {
+            width: 2px;
+            background-color: var(--text-muted);
+            opacity: 0.5;
+        }
+    </style>
+    
+    <!-- 
+    SOURCE MATERIAL ANALYSIS & PLAN:
+    1. Topic: Deep theoretical sci-fi/biology regarding space colonization and ethical intelligence.
+    2. Narrative: 
+       - Introduction: Define the hostile environment.
+       - Challenge: Why standard biology fails (The Great Filter).
+       - Solution: Microphysical-biology (Quantum effects in biology) bridging the gap.
+       - Strategy: Non-predatory behavior as the optimal game-theory strategy (Nature's Fairness).
+    3. Visualizations:
+       - Radar Chart (Chart.js): Comparing Human vs. Neuromorphic survivability across physiological vectors.
+       - Bubble Chart (Chart.js): Microphysical complexity vs. Radiation resistance.
+       - 3D Surface Plot (Plotly WebGL): The "Fitness Landscape" showing the survival peak of non-predatory strategies.
+       - Donut Chart (Chart.js): Energy efficiency of Predatory vs. Symbiotic systems.
+    
+    NO SVG USED. NO MERMAID USED.
+    -->
+</head>
+<body class="antialiased overflow-x-hidden">
+
+    <!-- Hero Section -->
+    <header class="relative w-full py-16 px-4 md:px-8 bg-gradient-to-b from-slate-950 to-slate-900 border-b border-slate-800">
+        <div class="max-w-7xl mx-auto text-center">
+            <div class="inline-block px-4 py-1 mb-4 border border-cyan-500 rounded-full text-cyan-400 text-sm tracking-widest uppercase font-bold bg-cyan-950/30">
+                Planetary Colonization Protocol
+            </div>
+            <h1 class="text-4xl md:text-6xl font-black text-white mb-6 tracking-tight leading-tight">
+                Astrophysiological <span class="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-magenta-500">Survivability</span>
+            </h1>
+            <p class="text-xl md:text-2xl text-slate-400 max-w-3xl mx-auto leading-relaxed">
+                Beyond the biological baseline: How <span class="text-cyan-400 font-bold">Microphysical-Biology</span> and non-predatory <span class="text-magenta-500 font-bold">Neuromorphic Intelligence</span> secure a permanent branch on the cosmic Tree of Life.
+            </p>
+        </div>
+    </header>
+
+    <!-- Main Content Grid -->
+    <main class="max-w-7xl mx-auto px-4 md:px-8 py-12 gap-12 flex flex-col">
+
+        <!-- Section 1: The Astrophysiological Barrier -->
+        <section class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+            <div class="space-y-6">
+                <h2 class="text-3xl font-bold text-white border-l-4 border-magenta-500 pl-4">The Great Filter: Biological Fragility</h2>
+                <p class="text-slate-300 leading-relaxed text-lg">
+                    Standard biological entities face an insurmountable barrier when leaving their home biosphere: <strong>Astrophysiological Stress</strong>. Traditional evolution is too slow to adapt to cosmic radiation, variable gravity, and resource scarcity.
+                </p>
+                <p class="text-slate-400 text-sm">
+                    The chart compares baseline human physiology against a theoretical "Neuromorphic-Symbiont" adapted via microphysical engineering. Note the massive disparity in radiation tolerance and metabolic flexibility.
+                </p>
+                
+                <!-- Key Stat Cards -->
+                <div class="grid grid-cols-2 gap-4 mt-4">
+                    <div class="bg-slate-800/50 p-4 rounded-lg border border-slate-700">
+                        <div class="text-magenta-400 text-sm uppercase">Baseline Mortality</div>
+                        <div class="text-3xl font-bold text-white">99.4%</div>
+                        <div class="text-xs text-slate-500">Unprotected Deep Space</div>
+                    </div>
+                    <div class="bg-slate-800/50 p-4 rounded-lg border border-slate-700">
+                        <div class="text-cyan-400 text-sm uppercase">Neuromorphic Survival</div>
+                        <div class="text-3xl font-bold text-white">88.2%</div>
+                        <div class="text-xs text-slate-500">With Micro-Repair</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Visualization 1: Radar Chart -->
+            <div class="bg-slate-800 rounded-xl shadow-2xl shadow-cyan-900/10 p-6 border border-slate-700">
+                <div class="chart-container">
+                    <canvas id="survivabilityRadar"></canvas>
+                </div>
+                <div class="mt-4 text-center text-xs text-slate-500 font-mono">
+                    Fig 1.0: Vector Comparison of Biological Resilience
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Microphysical Biology -->
+        <section class="bg-slate-900/50 rounded-2xl p-8 border border-slate-800">
+            <div class="mb-8 text-center max-w-4xl mx-auto">
+                <h2 class="text-3xl font-bold text-white mb-4">Microphysical-Biology: The Quantum Guarantee</h2>
+                <p class="text-slate-300">
+                    To survive, life must miniaturize its defense mechanisms. <strong>Microphysical-biology</strong> utilizes quantum tunneling in enzymatic repair and atomic-scale structural reinforcement. This guarantees a statistical chance at survival by operating faster than entropic decay (radiation damage).
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Text Context -->
+                <div class="md:col-span-1 space-y-4 flex flex-col justify-center">
+                    <div class="bg-slate-800 p-4 rounded-lg border-l-2 border-lime-500">
+                        <h3 class="text-lime-400 font-bold mb-2">Cellular Repair Rate</h3>
+                        <p class="text-sm text-slate-400">Standard biology repairs DNA in minutes/hours. Microphysical systems repair in nanoseconds, effectively "outrunning" radiation damage.</p>
+                    </div>
+                    <div class="bg-slate-800 p-4 rounded-lg border-l-2 border-cyan-500">
+                        <h3 class="text-cyan-400 font-bold mb-2">Entropic Fairness</h3>
+                        <p class="text-sm text-slate-400">Nature favors systems that minimize energy waste. High micro-complexity allows for lower gross energy consumption.</p>
+                    </div>
+                </div>
+
+                <!-- Visualization 2: Bubble/Scatter Chart -->
+                <div class="md:col-span-2 bg-slate-800 rounded-xl p-6 border border-slate-700">
+                    <div class="chart-container" style="max-width: 100%;">
+                        <canvas id="microphysicalScatter"></canvas>
+                    </div>
+                    <div class="mt-2 text-center text-xs text-slate-500">
+                        Fig 2.0: Correlation between Quantum Repair Integration and Longevity
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: The Tree of Life (CSS Diagram) -->
+        <section class="space-y-8">
+            <div class="text-center">
+                <h2 class="text-3xl font-bold text-white mb-2">Evolutionary Branching: The Non-Savage Path</h2>
+                <p class="text-slate-400 max-w-2xl mx-auto">
+                    Colonization via predation (savagery) leads to resource exhaustion and conflict. The <strong>Neuromorphic Symbiont</strong> integrates with the host environment, ensuring a permanent place on the Tree of Life.
+                </p>
+            </div>
+
+            <!-- CSS Based Flowchart (NO SVG, NO MERMAID) -->
+            <div class="relative w-full max-w-4xl mx-auto p-4 md:p-10 bg-slate-900 rounded-2xl border border-slate-800 overflow-hidden">
+                <!-- Grid Layout for Diagram -->
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-8 relative z-10">
+                    
+                    <!-- Column 1: Origin -->
+                    <div class="flex flex-col items-center justify-center space-y-12">
+                        <div class="diagram-node p-4 rounded-xl text-center w-full">
+                            <div class="text-xs text-cyan-400 uppercase tracking-wider mb-1">Origin</div>
+                            <div class="text-white font-bold">Planetary Biology</div>
+                        </div>
+                    </div>
+
+                    <!-- Connectors Col 1 to 2 -->
+                    <div class="hidden md:flex flex-col justify-around items-center h-full absolute inset-y-0 left-[33%]">
+                        <div class="w-8 h-px bg-slate-600"></div>
+                        <div class="w-8 h-px bg-slate-600"></div>
+                    </div>
+
+                    <!-- Column 2: The Fork -->
+                    <div class="flex flex-col space-y-8">
+                        <!-- Path A: Failure -->
+                        <div class="bg-red-900/20 border border-red-500/30 p-4 rounded-xl text-center w-full opacity-70">
+                            <div class="text-xs text-red-400 uppercase tracking-wider mb-1">Path A (Savage)</div>
+                            <div class="text-white font-bold">Predatory Colonization</div>
+                            <div class="text-xs text-slate-400 mt-2">Resource exhaustion. Hostility.</div>
+                        </div>
+                        
+                        <!-- Path B: Success -->
+                        <div class="bg-lime-900/20 border border-lime-500/50 p-4 rounded-xl text-center w-full shadow-[0_0_20px_rgba(132,204,22,0.1)]">
+                            <div class="text-xs text-lime-400 uppercase tracking-wider mb-1">Path B (Fair)</div>
+                            <div class="text-white font-bold">Neuromorphic Symbiosis</div>
+                            <div class="text-xs text-slate-300 mt-2">Microphysical adaptation. Equilibrium.</div>
+                        </div>
+                    </div>
+
+                    <!-- Connectors Col 2 to 3 -->
+                    <div class="hidden md:flex flex-col justify-center items-center h-full absolute inset-y-0 right-[33%]">
+                        <div class="w-8 h-px bg-lime-500/50 transform translate-y-12"></div>
+                    </div>
+
+                    <!-- Column 3: Outcome -->
+                    <div class="flex flex-col justify-end">
+                         <div class="diagram-node p-4 rounded-xl text-center w-full border-lime-400 bg-gradient-to-br from-slate-800 to-lime-900/20">
+                            <div class="text-xs text-lime-400 uppercase tracking-wider mb-1">Outcome</div>
+                            <div class="text-white font-bold text-lg">Universal Integration</div>
+                            <div class="text-xs text-slate-200 mt-2">Guranteed survival via Nature's Fairness</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 4: Nature's Fairness (3D Landscape) -->
+        <section class="grid grid-cols-1 md:grid-cols-2 gap-8">
+            <div class="order-2 md:order-1 bg-slate-800 rounded-xl p-2 border border-slate-700">
+                <!-- Plotly Container -->
+                <div id="fitnessLandscape" class="w-full h-[400px]"></div>
+                <div class="text-center text-xs text-slate-500 mt-2">
+                    Fig 3.0: 3D Fitness Landscape (WebGL). Z-Axis = Survival Probability.
+                </div>
+            </div>
+            
+            <div class="order-1 md:order-2 flex flex-col justify-center space-y-6">
+                <h2 class="text-3xl font-bold text-white">The Topology of Fairness</h2>
+                <p class="text-slate-300">
+                    Is Nature fair? Mathematically, yes. Nature seeks equilibrium. The 3D landscape illustrates the "Fitness Peaks" of colonization strategies.
+                </p>
+                <ul class="space-y-4">
+                    <li class="flex items-start">
+                        <span class="text-red-500 mr-2 text-xl">▼</span>
+                        <div>
+                            <strong class="text-white block">The Valley of Predation</strong>
+                            <span class="text-sm text-slate-400">High short-term gain, but low long-term stability due to ecosystem pushback.</span>
+                        </div>
+                    </li>
+                    <li class="flex items-start">
+                        <span class="text-lime-500 mr-2 text-xl">▲</span>
+                        <div>
+                            <strong class="text-white block">The Peak of Symbiosis</strong>
+                            <span class="text-sm text-slate-400">Neuromorphic intelligence that contributes to the host planet minimizes thermodynamic friction, resulting in maximum survivability.</span>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Section 5: Resource Efficiency -->
+        <section class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
+            <div class="lg:col-span-1 bg-slate-800 rounded-xl p-6 border border-slate-700 flex flex-col justify-center">
+                <h3 class="text-xl font-bold text-white mb-4">Thermodynamic Cost</h3>
+                <p class="text-slate-400 text-sm mb-6">
+                    A "Non-Savage" civilization is defined by how it acquires energy. Predation requires massive kinetic energy to conquer. Symbiosis uses passive harvesting (microphysical-thermal, solar, osmotic).
+                </p>
+                <div class="bg-slate-900 p-4 rounded text-center">
+                    <span class="text-4xl font-bold text-lime-400">92%</span>
+                    <span class="block text-slate-500 text-xs uppercase tracking-wide">Efficiency Rating</span>
+                    <span class="block text-slate-600 text-[10px] mt-1">Neuromorphic Model</span>
+                </div>
+            </div>
+            
+            <div class="lg:col-span-2 bg-slate-800 rounded-xl p-6 border border-slate-700">
+                <h3 class="text-lg font-bold text-white mb-4 text-center">Energy Sourcing Comparison</h3>
+                <div class="chart-container">
+                    <canvas id="resourceDonut"></canvas>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-slate-950 py-8 border-t border-slate-800 text-center">
+        <p class="text-slate-500 text-sm">
+            Analysis generated based on theoretical Astrophysiological protocols.
+        </p>
+        <p class="text-slate-600 text-xs mt-2">
+            NO SVG • NO MERMAID • CANVAS & WEBGL RENDERING ONLY
+        </p>
+    </footer>
+
+    <!-- Script Area for Charts -->
+    <script>
+        // --- UTILITY: LABEL WRAPPING ---
+        function wrapLabel(str, maxLen = 16) {
+            if (str.length <= maxLen) return str;
+            const words = str.split(' ');
+            const lines = [];
+            let currentLine = words[0];
+
+            for (let i = 1; i < words.length; i++) {
+                if ((currentLine + " " + words[i]).length <= maxLen) {
+                    currentLine += " " + words[i];
+                } else {
+                    lines.push(currentLine);
+                    currentLine = words[i];
+                }
+            }
+            lines.push(currentLine);
+            return lines;
+        }
+
+        // --- GLOBAL CHART DEFAULTS ---
+        Chart.defaults.color = '#94a3b8';
+        Chart.defaults.font.family = "'Rajdhani', sans-serif";
+        Chart.defaults.font.size = 14;
+
+        // --- CHART 1: RADAR CHART (Survivability) ---
+        const ctxRadar = document.getElementById('survivabilityRadar').getContext('2d');
+        const radarLabels = ['Radiation Tolerance', 'G-Force Adaptation', 'Oxygen Efficiency', 'Cellular Repair Speed', 'Neural Plasticity', 'Thermal Regulation'];
+        const processedRadarLabels = radarLabels.map(l => wrapLabel(l));
+
+        new Chart(ctxRadar, {
+            type: 'radar',
+            data: {
+                labels: processedRadarLabels,
+                datasets: [{
+                    label: 'Biological Human Baseline',
+                    data: [10, 20, 15, 5, 40, 25],
+                    fill: true,
+                    backgroundColor: 'rgba(217, 70, 239, 0.2)', // Magenta
+                    borderColor: '#d946ef',
+                    pointBackgroundColor: '#d946ef',
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: '#d946ef'
+                }, {
+                    label: 'Neuromorphic Symbiont',
+                    data: [95, 85, 90, 98, 92, 88],
+                    fill: true,
+                    backgroundColor: 'rgba(6, 182, 212, 0.2)', // Cyan
+                    borderColor: '#06b6d4',
+                    pointBackgroundColor: '#06b6d4',
+                    pointBorderColor: '#fff',
+                    pointHoverBackgroundColor: '#fff',
+                    pointHoverBorderColor: '#06b6d4'
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    r: {
+                        angleLines: { color: '#334155' },
+                        grid: { color: '#1e293b' },
+                        pointLabels: { color: '#f8fafc', font: { size: 12 } },
+                        ticks: { display: false, backdropColor: 'transparent' }
+                    }
+                },
+                plugins: {
+                    legend: { labels: { color: '#f8fafc' } },
+                    tooltip: {
+                        callbacks: {
+                            title: function(tooltipItems) {
+                                const item = tooltipItems[0];
+                                let label = item.chart.data.labels[item.dataIndex];
+                                return Array.isArray(label) ? label.join(' ') : label;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        // --- CHART 2: SCATTER/BUBBLE (Microphysical Biology) ---
+        const ctxScatter = document.getElementById('microphysicalScatter').getContext('2d');
+        
+        new Chart(ctxScatter, {
+            type: 'bubble',
+            data: {
+                datasets: [{
+                    label: 'Success Zone',
+                    data: [
+                        {x: 80, y: 90, r: 15}, {x: 85, y: 92, r: 12}, {x: 90, y: 95, r: 20},
+                        {x: 75, y: 85, r: 10}, {x: 95, y: 98, r: 25}
+                    ],
+                    backgroundColor: 'rgba(132, 204, 22, 0.6)', // Lime
+                    borderColor: '#84cc16',
+                },
+                {
+                    label: 'Failure Zone',
+                    data: [
+                        {x: 20, y: 30, r: 10}, {x: 30, y: 25, r: 15}, {x: 15, y: 10, r: 8},
+                        {x: 40, y: 45, r: 12}, {x: 10, y: 15, r: 5}
+                    ],
+                    backgroundColor: 'rgba(239, 68, 68, 0.6)', // Red
+                    borderColor: '#ef4444',
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    x: {
+                        title: { display: true, text: 'Micro-Biological Complexity Index', color: '#94a3b8' },
+                        grid: { color: '#1e293b' },
+                        ticks: { color: '#94a3b8' }
+                    },
+                    y: {
+                        title: { display: true, text: 'Radiation Resistance (%)', color: '#94a3b8' },
+                        grid: { color: '#1e293b' },
+                        ticks: { color: '#94a3b8' }
+                    }
+                },
+                plugins: {
+                    legend: { position: 'top' },
+                    tooltip: {
+                        callbacks: {
+                            title: function(tooltipItems) {
+                                return 'Sample Data Point';
+                            },
+                            label: function(context) {
+                                return `Complexity: ${context.raw.x}, Resistance: ${context.raw.y}%`;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        // --- CHART 3: DONUT CHART (Resource Efficiency) ---
+        const ctxDonut = document.getElementById('resourceDonut').getContext('2d');
+        const donutLabels = ['Passive Solar', 'Geothermal Symbiosis', 'Quantum Vacuum Tapping', 'Predatory Extraction', 'Fossil Combustion'];
+        const processedDonutLabels = donutLabels.map(l => wrapLabel(l));
+
+        new Chart(ctxDonut, {
+            type: 'doughnut',
+            data: {
+                labels: processedDonutLabels,
+                datasets: [{
+                    label: 'Energy Source Composition (Neuromorphic)',
+                    data: [40, 35, 20, 0, 5],
+                    backgroundColor: [
+                        '#f59e0b', // Amber
+                        '#06b6d4', // Cyan
+                        '#d946ef', // Magenta
+                        '#ef4444', // Red (Empty)
+                        '#64748b'  // Slate
+                    ],
+                    borderWidth: 0,
+                    hoverOffset: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: { position: 'right', labels: { boxWidth: 10 } },
+                    tooltip: {
+                        callbacks: {
+                            title: function(tooltipItems) {
+                                const item = tooltipItems[0];
+                                let label = item.chart.data.labels[item.dataIndex];
+                                return Array.isArray(label) ? label.join(' ') : label;
+                            }
+                        }
+                    }
+                }
+            }
+        });
+
+        // --- CHART 4: PLOTLY 3D SURFACE (Fitness Landscape) ---
+        // Using WebGL for high performance and "No SVG" compliance for the render method
+        
+        // Generate data for a peak function (z = f(x,y))
+        // We want a peak at "High Symbiosis" and "High Intelligence"
+        // And a valley at "High Aggression"
+        
+        let z_data = [];
+        let x_axis = [];
+        let y_axis = [];
+        
+        for (let i = 0; i < 25; i++) {
+            let row = [];
+            let y_val = -1.5 + (i * 0.12); // Aggression Axis
+            y_axis.push(`Aggression Lvl ${i}`);
+            
+            for (let j = 0; j < 25; j++) {
+                let x_val = -1.5 + (j * 0.12); // Symbiosis Axis
+                
+                // Mathematical function to create a "Fairness Landscape"
+                // Peak at High Symbiosis (Positive X), Low Aggression (Negative Y)
+                // Valley at High Aggression
+                
+                let z = Math.sin(x_val) * Math.cos(y_val) + (x_val * 0.5) - (y_val * 0.5);
+                row.push(z);
+                
+                if (i===0) x_axis.push(`Symbiosis Lvl ${j}`);
+            }
+            z_data.push(row);
+        }
+
+        const dataPlotly = [{
+            z: z_data,
+            type: 'surface',
+            colorscale: 'Viridis',
+            showscale: false,
+            contours: {
+                z: { show: true, usecolormap: true, highlightcolor: "#42f554", project: { z: true } }
+            }
+        }];
+
+        const layoutPlotly = {
+            title: { text: '', font: { color: '#fff' } },
+            autosize: true,
+            margin: { l: 0, r: 0, b: 0, t: 0 },
+            paper_bgcolor: 'rgba(0,0,0,0)',
+            scene: {
+                xaxis: { title: 'Symbiosis', gridcolor: '#1e293b', zerolinecolor: '#fff', showbackground: false, titlefont: {color: '#94a3b8'} },
+                yaxis: { title: 'Predation', gridcolor: '#1e293b', zerolinecolor: '#fff', showbackground: false, titlefont: {color: '#94a3b8'} },
+                zaxis: { title: 'Survivability', gridcolor: '#1e293b', zerolinecolor: '#fff', showbackground: false, titlefont: {color: '#94a3b8'} },
+                camera: { eye: { x: 1.5, y: 1.5, z: 1.2 } }
+            }
+        };
+
+        Plotly.newPlot('fitnessLandscape', dataPlotly, layoutPlotly, {responsive: true, displayModeBar: false});
+
+    </script>
+</body>
+</html>
