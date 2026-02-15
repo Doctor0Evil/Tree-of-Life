@@ -1,0 +1,1 @@
+nodeid, site, lat, lon, medium, K, E, R, rPFAS_min, rPFAS_max, rEcoli_min, rEcoli_max, rSAT_min, rSAT_max, rneo_bee_min, rneo_bee_max, rWBGT_bee_min, rWBGT_bee_max, rt90_soil_min, rt90_soil_max, rtox_soil_min, rtox_soil_max, rt90_aquatic_min, rt90_aquatic_max, rtox_aquatic_min, rtox_aquatic_max, corridorpresent, safestep, vtmax, evidencehex, signinghex
