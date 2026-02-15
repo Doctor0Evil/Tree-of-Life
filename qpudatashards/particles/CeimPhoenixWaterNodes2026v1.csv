@@ -1,0 +1,6 @@
+nodeid,contaminant,region,latitude,longitude,cin,cout,flow,windowstart,windowend,cref_sup,hazardweight,kn,ecoimpactscore,unitsC,unitsQ,notes
+CAP-LP-PFBS,PFBS,Maricopa-Yavapai-AZ,33.8530,-112.2690,3.9,0.39,50.0,2024-11-01T00:00:00Z,2024-11-30T23:59:59Z,4.0,1.0,0.88,0.88,ng/L,m3/s,PFBS at Lake Pleasant Parkway with 90% modeled removal under CEIM-XJ.
+GILA-EST-ECOLI,Ecoli,Maricopa-AZ,33.3000,-112.4000,700,210,3.0,2024-06-01T00:00:00Z,2024-06-30T23:59:59Z,235.0,3.0,0.92,0.92,MPN/100mL,m3/s,Gila River at Estrella Parkway E. coli reduction consistent with riparian buffers.
+CRB-SAL-TDS,TDS,CO-UT-WY-AZ,32.7000,-114.7000,650,500,150.0,2024-01-01T00:00:00Z,2024-12-31T23:59:59Z,800.0,0.67,0.78,0.78,mg/L,m3/s,Colorado River Basin salinity control node aligned with 1.3 Mt/year salt reduction.
+PHX-MAR-NO3,Nitrate,Phoenix-AZ,33.4300,-112.0800,6.0,3.0,2.5,2025-01-01T00:00:00Z,2025-03-31T23:59:59Z,10.0,2.0,0.86,0.86,mg/L as N,m3/s,Managed aquifer recharge basin with 50% nitrate removal within EPA 10 mg/L benchmark.
+PHX-WWTP-PFAS,PFASmix,Phoenix-AZ,33.4500,-112.0900,12.0,2.0,1.2,2025-04-01T00:00:00Z,2025-06-30T23:59:59Z,4.0,1.5,0.90,0.90,ng/L,m3/s,PFAS mixture at Phoenix WTP with GAC/IX achieving 83% reduction under CEIM-XJ supreme reference.
